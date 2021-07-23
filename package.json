@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/abdulhaseeb13mar/kickstart-contract-frontend#readme",
   "dependencies": {
+    "fs-extra": "^10.0.0",
     "ganache-cli": "^6.12.2",
     "mocha": "^9.0.2",
     "solc": "^0.4.17",
