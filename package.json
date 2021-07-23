@@ -4,7 +4,9 @@
   "description": "to provide web3 solution for kickstart problem",
   "main": "index.js",
   "scripts": {
-    "test": "mocha"
+    "test": "mocha",
+    "dev": "next dev",
+    "deploy": "cd ethereum/ && node deploy.js"
   },
   "repository": {
     "type": "git",
@@ -20,6 +22,11 @@
     "fs-extra": "^10.0.0",
     "ganache-cli": "^6.12.2",
     "mocha": "^9.0.2",
+    "next": "^11.0.1",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "semantic-ui-css": "^2.4.1",
+    "semantic-ui-react": "^2.0.3",
     "solc": "^0.4.17",
     "truffle-hdwallet-provider": "0.0.3",
     "web3": "^1.3.5"
