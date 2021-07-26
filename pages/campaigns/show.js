@@ -1,9 +1,10 @@
 import React from "react";
-import { Card, Grid } from "semantic-ui-react";
+import { Card, Grid, Button } from "semantic-ui-react";
 import Layout from "../../components/Layout";
 import Campaign from "../../ethereum/campaign";
 import web3 from "../../ethereum/web3";
 import ContributeForm from "../../components/ContributeForm";
+import { Link } from "../../routes";
 
 function CampaignShow(props) {
   const renderCards = () => {
@@ -23,7 +24,7 @@ function CampaignShow(props) {
         style: { overflowWrap: "break-word" },
       },
       {
-        header: minimumContribution,
+        header: `${minimumContribution} wei`,
         meta: "Minimum Contribution (wei)",
         description:
           "you must contribute at least this much wei to become contributor",
@@ -53,12 +54,25 @@ function CampaignShow(props) {
 
   return (
     <Layout>
-      <h3>Campaign Show</h3>
+      <h1 style={{ textAlign: "center", marginBottom: 30 }}>
+        {props.campaignName}
+      </h1>
       <Grid>
-        <Grid.Column width={10}>{renderCards()}</Grid.Column>
-        <Grid.Column width={6}>
-          <ContributeForm />
-        </Grid.Column>
+        <Grid.Row>
+          <Grid.Column width={10}>{renderCards()}</Grid.Column>
+          <Grid.Column width={6}>
+            <ContributeForm address={props.address} />
+          </Grid.Column>
+        </Grid.Row>
+        <Grid.Row>
+          <Grid.Column>
+            <Link route={`/campaigns/${props.address}/requests`}>
+              <a>
+                <Button primary>View Requests</Button>
+              </a>
+            </Link>
+          </Grid.Column>
+        </Grid.Row>
       </Grid>
     </Layout>
   );
@@ -75,6 +89,8 @@ CampaignShow.getInitialProps = async (props) => {
     requestsCount: summary[2],
     approversCount: summary[3],
     manager: summary[4],
+    address: props.query.address,
+    campaignName: summary[5],
   };
 };
 export default CampaignShow;
